@@ -249,12 +249,27 @@ body{
 }
 
 /* ---------- Highlight Block / Proposal list ---------- */
-.section-highlight{
-  background:#f3f9ff; padding:3rem 2rem; border-radius:12px;
-  box-shadow:0 0 10px rgba(0,0,0,.05); margin:2rem 0;
+.section-highlight {
+  background-color: #f3f9ff;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  max-width: 800px;      /* 中央に幅を制限 */
+  margin-left: auto;     /* ← 左右自動余白で中央寄せ */
+  margin-right: auto;
+  text-align: center;    /* 中のテキストも中央 */
 }
+
 .section-highlight h1{ font-size:2rem; color:#005bac; margin-bottom:1rem }
 .section-highlight h3{ font-size:1.5rem; color:#0071c0; margin-bottom:1rem }
+
+.proposal-list {
+  text-align: left;
+  margin: 1rem auto;
+}
 
 ol.proposal-list{ margin:1rem 0; padding:0; list-style:none }
 ol.proposal-list li{
