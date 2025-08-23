@@ -79,15 +79,21 @@ body{
 
 /* ---------- Hero (Full screen, cover, no overlay) ---------- */
 .hero {
-  position: relative;
-  background-image: url("images/main.png");
-  background-repeat: no-repeat;
+  background-image: url("images/main.png");  /* PC用 */
+  background-size: cover;
   background-position: center;
-  background-size: cover;        /* 常に画面を埋める */
-  height: 100vh;                 /* 全画面 */
-  height: 100svh;                /* iOS対策 */
-  min-height: 560px;             /* 小画面潰れ防止 */
-  margin: 0;
+  background-repeat: no-repeat;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+}
+
+/* スマホでは専用画像に切替 */
+@media (max-width: 640px) {
+  .hero {
+    background-image: url("images/main_390x500.png");  /* スマホ用軽量版 */
+    background-position: center 45%;  /* 中央を基準に調整 */
+  }
 }
 
 .hero-inner {
