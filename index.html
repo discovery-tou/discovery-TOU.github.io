@@ -6,7 +6,10 @@
   <title>東京通信大学 ＠ディスカバリー</title>
   <meta name="description" content="東京通信大学 ＠ディスカバリー" />
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
@@ -37,77 +40,110 @@
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
-	  <!-- 
-      <div class="container hero-inner">
-        <span class="chip">2026年2月28日（土）東京通信大学・学生主催イベント</span>
-        <h1>
-          <img src="images/logo.png" width="600" alt="ディスカバリーロゴ" /><br />
-          参加者募集中
-        </h1>
-        <p class="lead">
-          学びの集大成が交差する一日。想いと知が、ここでつながる。
-        </p>
-      </div>
-	 -->
-    </section>
+	<!-- Hero -->
+	<section class="hero">
+	  <div class="container hero-inner">
+		<h1 class="event-date">2026年2月28日(土) 開催</h1>
+	  </div>
+	</section>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container about-center">
-        <h2>イベント概要</h2>
+<!-- About -->
+<section id="about" class="section about-split" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <!-- 左：縦書きキャッチ -->
+      <aside class="about-catch" aria-hidden="true">
+        <span class="catch-vert">
+          学びの「発見」がつながる日。
+        </span>
+      </aside>
+
+      <!-- 右：概要本文 -->
+      <div class="about-main">
+        <h2 id="about-heading">イベント概要</h2>
         <p class="about-text">
-          @ディスカバリーは、学生有志による学びの発表の場です。その名前には、参加者一人ひとりの「発見」を知ってもらうこと、
-          そして誰かの「発見」とつながることへの願いが込められています。
-          また、私たちにおなじみの「@CAMPUS」と「@ROOM」にもちなんでいます。今年、卒業式を前に4期生の中島さんをはじめとした先輩方の手で、記念すべき第1回が開催となりました。
-          <br />そして来年の2026年2月28日(土)には、私たち5期生が中心となって、第2回を開催する予定です。
-          現在、研究発表や展示に参加してくださる学生の方を募集中です。学年は問いません。
-          卒業前の学びの集大成としての研究でも、授業での成果物の展示でも、これから取り組みたいテーマの発表でも、
-          かたちは自由です。少しでも興味のある方は、ぜひお気軽にお声がけください！
+        「@ディスカバリー」は、東京通信大学の学生が企画・運営する、自主的な学習発表の場です。その名前には、参加者一人ひとりの「発見」を知ってもらうこと、そして誰かの「発見」とつながることへの願いが込められています。また、私たちにおなじみの「@CAMPUS」 「@ROOM」にも由来しています。<br>
+		今年、卒業式を前に4期生の中島さんをはじめとした先輩方の手で、記念すべき第1回が開催となりました。	
+		もともとは4期生までカリキュラムの科目『リサーチレポート』の発表機会として企画されましたが、ただの発表会にとどまらず、「展示会もやってみたい！」という声が上がり、自由な発想が集まって、結果的に最初の構想を超える盛り上がりとなりました。<br><br>
+			
+          そして来年の2026年2月28日(土)には、私たち5期生が中心となって、第2回を開催する予定です。
+          現在、研究発表や展示に参加してくださる学生の方を募集中です。学年は問いません。<br>東京通信大学はまだ若い大学です。だからこそ、学生の「やってみたい」に耳を傾け、後押ししてくれる先生方や運営のスタッフの皆さん、学友たちと卒業生がいます。卒業前の学びの集大成としての研究でも、授業での成果物の展示でも、これから取り組みたいテーマの発表でも、かたちは自由です。あなたの「やってみたい」を、ぜひここで形にしてみませんか？あなたのご参加をお待ちしています！
+
         </p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <!-- Program -->
     <section id="program" class="section section-alt">
       <div class="container">
         <div class="section-head center">
           <h2>2025年度の予定</h2>
-       </div>
+       　</div>
+		<p class="section-subtitle">
+		  <time datetime="2026-02-28">2026年2月28日（土）</time> 開催
+		</p>
         <div class="grid-2 cards">
           <article class="card">
             <h3 class="card-title">5期生による自主研究の発表</h3>
-            <div class="card-meta">自主研究を行っている来年卒業予定の学生の発表です</div>
+            <div class="card-meta">自主研究を行っている来年卒業予定の学生の発表です。</div>
           </article>
           <article class="card">
             <h3 class="card-title">リサーチレポートその後</h3>
-            <div class="card-meta">昨年のリサーチレポートのその後を先輩方に発表・展示していただきます！</div>
+            <div class="card-meta">昨年のリサーチレポートのその後を先輩方に発表・展示していただきます。</div>
           </article>
           <article class="card">
             <h3 class="card-title">応用プログラミング作品展</h3>
-            <div class="card-meta">情報マネジメント学部・藤井稔也先生の科目「応プロI・II」を受講した学生の作品を展示します</div>
+            <div class="card-meta">情報マネジメント学部・藤井稔也先生の科目「応プロI・II」を受講した学生の作品を展示します。</div>
           </article>
           <article class="card">
             <h3 class="card-title">「（仮）AIと紡ぐ、うたの風景 〜SUNO Music Lounge〜」</h3>
             <div class="card-meta">東京通信大学が誇る大物AI音楽プロデューサーYKのスペシャルコンテンツ！</div>
           </article>
         </div>
-		  <h1>参加者はまだまだ募集中です！<br>一緒に「＠ディスカバリー」をつくっていきませんか？</h1>
+		  <p class="program-cta">
+		  参加者はまだまだ募集中です。<br>
+		  一緒に「＠ディスカバリー」をつくっていきませんか？
+		  </p>
       </div>
-<div class="container hero-inner section-highlight">
-  <h3>皆さんへの提案</h3>
-  <ol class="proposal-list">
-    <li>履修した科目のさらなる掘り下げ</li>
-    <li>授業の課題のレポートや成果物を見てもらいたい…！</li>
-    <li>仕事や実生活で役に立った科目の発表</li>
-    <li>4年生で取り組みたい学習の発表</li>
-    <li>「好きなコト・モノ」や「推し」の学術的発展</li>
-    <li>開催日がまだ先なのでいまから自主研究や卒業論文に取り組んでも…！</li>
-  </ol>
-</div>
-    </section>
+<!-- 皆さんへの提案（イベント概要と同じレイアウト） -->
+<section id="proposal" class="section about-split" aria-labelledby="proposal-heading">
+  <div class="container">
+    <div class="about-grid">
+      <!-- 左：縦書き -->
+      <aside class="about-catch" aria-hidden="true">
+        <span class="catch-vert">皆さんへの提案。</span>
+      </aside>
 
+      <!-- 右：本文 -->
+      <div class="about-main">
+        <p class="section-subtitle">「何を出せばいい？」と迷っている方へ。次のような発表・展示を歓迎します。</p>
+
+        <ol class="proposal-list">
+          	<li>履修した科目のさらなる深掘り</li>
+          	<li>授業課題のレポート／成果物を見てもらいたい！</li>
+          	<li>仕事や実生活で役立った学びの共有</li>
+          	<li>「好きなコト・モノ」や「推し」を学術的に語る</li>
+			<li>今後に挑戦したいテーマのキックオフ発表</li>
+          	<li>開催日まで時間あり → いまから自主研究や卒業論文に挑戦してみる！</li>
+        </ol>
+
+        <p class="section-note">迷ったら、一度ご相談ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a class="btn btn-primary btn-lg btn-center" href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener">
+参加エントリー / お問い合わせ
+</a>
+
+      </div>
+    </div>
+  </div>
+</section>
     <!-- Speakers -->
     <section id="speakers" class="section">
       <div class="container">
@@ -218,32 +254,25 @@
           </article>
         </div>
       </div>
+		    <!-- Gallery: JSで横スクロール -->
+<section id="gallery" class="section section-alt" aria-labelledby="gallery-heading">
+  <div class="container">
+  </div>
+
+  <!-- フル幅で流すためコンテナ外 -->
+  <div class="auto-scroll-gallery" data-speed="60">
+    <div class="track">
+      <!-- 画像を好きなだけ入れてOK。順番のまま無限ループします -->
+      <img src="images/gallery/01.png" alt="会場の様子" loading="lazy" decoding="async">
+      <img src="images/gallery/02.png" alt="展示の一コマ" loading="lazy" decoding="async">
+      <img src="images/gallery/03.png" alt="発表の様子" loading="lazy" decoding="async">
+      <img src="images/gallery/04.png" alt="来場者" loading="lazy" decoding="async">
+      <img src="images/gallery/05.png" alt="ブース" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
     </section>
 
-    <!-- News 
-    <section id="news" class="section section-alt">
-      <div class="container">
-        <div class="section-head center">
-          <h2>お知らせ</h2>
-          <a class="link-inline" href="#">お知らせ一覧 →</a>
-        </div>
-        <div class="grid-3 cards">
-          <article class="card">
-            <div class="badge">2025-09-01</div>
-            <h3 class="card-title">参加登録を開始しました</h3>
-          </article>
-          <article class="card">
-            <div class="badge">2025-09-15</div>
-            <h3 class="card-title">基調講演者を発表</h3>
-          </article>
-          <article class="card">
-            <div class="badge">2025-10-01</div>
-            <h3 class="card-title">タイムテーブルを公開</h3>
-          </article>
-        </div>
-      </div>
-    </section>
-　　-->
 	
     <!-- Access -->
 <section id="access" class="section">
@@ -306,17 +335,13 @@
   </main>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>© 2025 東京通信大学 ＠ディスカバリー実行委員会</div>
-      <nav aria-label="フッターメニュー">
-        <ul class="footer-nav">
-          <li><a href="#contact">お問い合わせ</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="copyright">© 2025 東京通信大学 ＠ディスカバリー実行委員会</div>
+    <nav aria-label="フッターメニュー"></nav>
+  </div>
+</footer>
+
 
   <script src="main.js"></script>
 </body>

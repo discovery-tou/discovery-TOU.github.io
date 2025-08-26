@@ -8,16 +8,43 @@
   --brand-gradient: linear-gradient(90deg, #1a2a6c, #4f66ff, #ff5ccd);
   --alt:#f7f7f9;
   --radius:16px;
-  --container:1120px;
-  --font-main: 'Noto Sans JP','Poppins','Yu Gothic',sans-serif;
+  --container:960px;
+  --font-mincho: "Shippori Mincho","Noto Serif JP","Hiragino Mincho ProN",serif;
+  --font-round:  "Zen Maru Gothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --font-body:   "Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --font-latin:  "Poppins",system-ui,sans-serif;
 }
+
+/* 本文 sans-serif */
+html, body { font-family: var(--font-body); }
+
+h2{
+  font-family: "Yusei Magic","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: .02em;
+}
+
+/* 丸ゴ */
+.event-date, .card-title, .btn, nav a, .chip {
+  font-family: var(--font-round);
+  font-weight: 700;              /* 800だと合成になるので 700 が綺麗 */
+  letter-spacing: .02em;
+}
+
+/* 英字 */
+.brand, .btn { font-family: var(--font-latin), var(--font-round); }
+
+/* ユーティリティ */
+.font-mincho { font-family: var(--font-mincho) !important; }
+.font-round  { font-family: var(--font-round) !important; }
+
 
 /* ---------- Typography / Headings ---------- */
 h2{
   position:relative;
   display:inline-block;
   padding-bottom:6px;
-  margin:0 auto 24px;
   text-align:center;
 }
 h2::after{
@@ -27,6 +54,7 @@ h2::after{
   background: linear-gradient(90deg,#4facfe,#7366ff,#b75cff);
   border-radius:2px;
 }
+
 #program h1{
   text-align:center;
   margin-top:40px;
@@ -40,6 +68,34 @@ h2::after{
 .hero h1 img{
   width:100%; max-width:600px; height:auto;
 }
+
+/* ===== Hero：日付だけドーン（白下地＋黒文字、影なし） ===== */
+.hero h1.event-date{
+  display: inline-block;
+  font-size: clamp(24px, 5vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: .02em;
+
+  color: #ffffff;                   /* 黒文字 */
+  background: rgba(000, 000, 000, .60);/* 黒っぽい半透明の下地 */
+  padding: .3em 1rem;                /* 余白で“ドーン”感 */
+  border-radius: 16px;               /* 角丸でポップに */
+  border: 1px solid rgba(255,255,255,.8); /* 薄い縁（影は使わない） */
+  margin: 0;
+  text-align: center;
+  /* アウトライン（ぼかし0、拡張のみ） */
+  box-shadow: 0 0 0 var(--plate-outline-width) var(--plate-outline-color);
+}
+
+@media (max-width: 480px){
+  .hero h1.event-date{ font-size: 24px; }
+}
+
+/* 念のため：Heroに重ねる黒いオーバーレイや文字の影を使っていたら無効化 */
+.hero::before{ content:none !important; }
+.hero h1{ text-shadow: none !important; }
+
 
 /* ---------- Reset / Base ---------- */
 *{ box-sizing:border-box }
@@ -77,15 +133,94 @@ body{
 .nav-list a:hover{ text-decoration:underline }
 .header-cta{ margin-left:12px }
 
+/* === Header spacing (ぎゅっ→ゆったり) 上書き === */
+.site-header .header-inner{
+  height: auto;           /* ← 固定高さを捨てる */
+  min-height: 64px;       /* 最低ラインはキープ */
+  padding-block: 14px;    /* 上下に余白を足す */
+  gap: 16px;              /* 左右ブロック間のすき間 */
+}
+@media (min-width: 960px){
+  .site-header { --container: 1200px; }
+}
+
+/* 画面端との余白を少し増やす（ヘッダー内のみ） */
+.site-header .container{ padding-inline: 16px; }
+@media (min-width: 960px){
+  .site-header .container{ padding-inline: 24px; }
+}
+
+/* メニュー間を広げる（PC時） */
+@media (min-width: 960px){
+  .nav{ gap: 24px; }         /* 16 → 24 */
+  .nav-list{ gap: 28px; }    /* 20 → 28 */
+  .header-cta{ margin-left: 20px; } /* 12 → 20 */
+}
+
+/* クリックしやすく（見た目はほぼそのまま） */
+.nav-list a{ padding-block: 8px; }
+
+/* 1) メニュー文字を折り返さない */
+.nav-list a{
+  white-space: nowrap;       /* ← これで二段にならない */
+  /* 追加で効かせたいなら ↓ もOK（CJKの改行抑制） */
+  /* word-break: keep-all; */
+}
+
+/* 2) 真ん中のナビに可変幅を与えて詰まりにくく */
+.nav{ flex: 1 1 auto; min-width: 0; }
+
+/* 3) PCでは gap を可変に（幅が狭い時は自動で小さめに） */
+@media (min-width: 960px){
+  .nav{ gap: clamp(12px, 1.5vw, 20px); }
+  .nav-list{ gap: clamp(14px, 2vw, 24px); }
+  .header-cta{ margin-left: clamp(12px, 1.6vw, 20px); }
+}
+
+/* 4) ロゴを少しだけ可変にして余白をつくる（必要なら） */
+/* Xリンクを上下中央に */
+.site-header .hide-x-on-mobile{
+  display: inline-flex;   /* 行内でフレックス */
+  align-items: center;    /* 縦中央 */
+  line-height: 0;         /* 余計な上下の行間をカット */
+}
+.site-header .hide-x-on-mobile img{
+  display: block;         /* ベースラインの隙間を消す */
+}
+
+/* 5) それでも 1100px 前後で厳しいなら、CTA を早めに畳む（任意） */
+@media (max-width: 1200px){
+  .header-cta{ display: none; }
+}
+
+/* ボタン内テキストを折り返さない＆縮ませない */
+.header-cta{
+  white-space: nowrap;   /* 改行禁止 */
+  flex: 0 0 auto;        /* flex-shrink:0 と同義＝幅を維持 */
+}
+
+/* 幅が苦しい時のゆとり確保（PC帯） */
+@media (max-width: 1200px){
+  .nav{ flex: 1 1 auto; min-width: 0; }                    /* ナビ側に可変幅を与える */
+  .nav-list{ gap: clamp(10px, 1.4vw, 20px); }              /* 項目間隔を自動で少し詰める */
+  .header-cta{ padding: 10px 14px; font-size: 15px; }      /* ボタンを少しだけコンパクトに */
+  .site-header .brand img{ width: clamp(200px, 20vw, 320px); height:auto; } /* ロゴを可変に */
+}
+
+/* Xアイコンで横幅が足りない場合は、少し広い幅で早めに消す */
+@media (max-width: 1100px){
+  .hide-x-on-mobile{ display: none !important; }
+}
+
 /* ---------- Hero (Full screen, cover, no overlay) ---------- */
 .hero {
-  background-image: url("images/main.png");  /* PC用 */
+  background-image: url("images/main_800x600.png");  /* PC用 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
   height: 100svh;
-  min-height: 560px;
+  min-width: 390px;
 }
 
 /* スマホでは専用画像に切替 */
@@ -120,7 +255,7 @@ body{
   max-width: 90%;     /* モバイルで収まる */
   height: auto;
   width: 100%;
-  max-width: 600px;   /* PCでの最大幅 */
+  max-width: 800px;   /* PCでの最大幅 */
   margin-bottom: 0.5rem;
 }
 
@@ -150,7 +285,7 @@ body{
   .lead { font-size: 18px; }
 }
 @media (min-width: 960px) {
-  .hero { min-height: 680px; }
+  .hero { min-height: 600px; }
   .hero h1 { font-size: clamp(40px, 5vw, 80px); }
   .lead { font-size: 19px; }
 }
@@ -198,16 +333,196 @@ body{
   box-shadow:0 1px 0 rgba(0,0,0,.02);
 }
 .card-time{ font-size:12px; color:var(--muted) }
-.card-title{ margin:6px 0; font-size:18px }
-.card-meta{ font-size:13px; color:var(--muted) }
+.card-title{ margin:6px 0; font-size:20px }
+.card-meta{ font-size:16px; color:var(--muted) }
 .card-text{ color:#374151; line-height:1.7 }
 .badge{ display:inline-block; font-size:12px; color:#374151; background:#eef2ff; padding:4px 8px; border-radius:999px }
 
-/* ---------- About ---------- */
-.about-center{ display:flex; flex-direction:column; align-items:center }
-.about-text{
-  margin-top:16px; max-width:720px; text-align:left; line-height:1.8; color:#444; font-size:18px;
+/* ===== About：左 縦書きキャッチ × 右 本文（budou風） ===== */
+.about-grid{
+  display:grid;
+  grid-template-columns: clamp(300px, 20vw, 140px) 1fr; /* 左幅は画面に応じて可変 */
+  gap: 20px;
+  align-items: stretch;
 }
+
+/* 左：縦書きの“面” */
+.about-catch{
+  position: relative;
+  display:flex; align-items:center; justify-content:center;
+  background:#fff;
+  overflow: hidden;
+}
+
+/* 縦書きキャッチ本体：余白広め＆上品フォント */
+.catch-vert{
+  writing-mode: vertical-rl;
+  text-orientation: mixed;        /* かな漢字は縦、英数は横倒しで自然に */
+  font-family: "Zen Kaku Gothic New","Noto Sans JP","Yu Gothic",sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 3.6vw, 34px); /* ← ここで大きさ調整 */
+  letter-spacing: .12em;          /* 文字間を少し空けて“ふわっ”と */
+  line-height: 2;                 /* 縦方向の間隔を広めに */
+  color: #0a1f44;                 /* 濃紺（サイトの青系と相性◎） */
+  padding: 12px 6px;
+}
+
+/* 英字の小ラベル（下辺に沿ってうっすら） */
+.catch-sub{
+  position:absolute; bottom:10px; right:10px;
+  font-size: 11px; letter-spacing:.36em;
+  color: rgba(0,0,0,.45);
+  transform: rotate(90deg);       /* 英字を90度回転で縦面になじませる */
+  transform-origin: right bottom;
+}
+
+/* 右：本文の見やすさ */
+.about-main .about-text{
+  font-size: 18px;
+  line-height: 1.9;
+  color: #444;
+}
+
+/* ——— ユーティリティ：縦中横（2〜4桁を1文字枠に） ——— */
+.tcy{ text-combine-upright: all; } /* 例：<span class="tcy">2026</span> */
+
+/* モバイル：1カラム化（縦書きは維持／サイズだけ少し縮める） */
+@media (max-width: 640px){
+  .about-grid{ grid-template-columns: 1fr }
+  .about-catch{ padding: 10px 0; margin-bottom: 8px; }
+  .catch-vert{ font-size: 18px; letter-spacing:.08em; line-height:1.8; }
+  .catch-sub{ bottom:6px; right:8px; }
+}
+
+/* セクションのサブ見出し風（中央寄せ） */
+.section-subtitle{
+  text-align: center;
+  margin: 0 0 0 0;        /* 上下の間隔はお好みで */
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: #0a1f44;
+  font-size: 1.1rem;         /* h3風に見せたいときは 1.25rem などに */
+}
+.section-subtitle time{
+  font-variant-numeric: tabular-nums;
+}
+
+/* プログラム下の募集メッセージを中央＆飾り枠に */
+.program-cta{
+  text-align: center;
+  margin: 28px auto 0;               /* 上・左右・下の余白 */
+  padding: 18px 20px;
+  max-width: 880px;
+  font-family: "Noto Sans JP","Yu Gothic",sans-serif;
+  font-size: clamp(18px, 2.2vw, 20px);
+  letter-spacing: .02em;
+  line-height: 1.9;
+  color: #0a1f44;
+
+  /* “いい感じ”のグラデ枠（中は白） */
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    var(--brand-gradient) border-box; /* 既存の --brand-gradient を活用 */
+  box-shadow: 0 8px 24px rgba(17,24,39,.06);
+}
+
+/* モバイルで少しタイトに */
+@media (max-width:640px){
+  .program-cta{ padding: 14px 16px; font-size: 18px; }
+}
+
+/* セクションのサブ見出し（中央寄せ） */
+.section-subtitle{
+  text-align:center;
+  margin: 6px 0 22px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: #0a1f44;
+  font-size: 1.1rem;
+}
+
+/* エントリーCTAの飾り（グラデ枠＋やわらか影） */
+.apply-cta{
+  text-align:center;
+  margin: 0 auto;
+  padding: 20px 22px;
+  max-width: 880px;
+
+  font-family: "Yusei Magic","Noto Sans JP","Yu Gothic",sans-serif; /* ヒーローと合わせてポップに */
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.9;
+  letter-spacing: .02em;
+  color: #0a1f44;
+
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    var(--brand-gradient) border-box;
+  box-shadow: 0 8px 24px rgba(17,24,39,.06);
+}
+
+/* 上に細いグラデラインのアクセント */
+.apply-cta::before{
+  content:"";
+  display:block;
+  width: 120px; height: 3px;
+  margin: 0 auto 10px;
+  background: var(--brand-gradient);
+  border-radius: 999px;
+  opacity:.85;
+}
+
+@media (max-width:640px){
+  .apply-cta{ padding:16px; font-size:18px; }
+}
+
+/* 提案＆エントリーの左縦書き側を「素の文字だけ」に */
+#proposal .about-catch,
+#apply .about-catch{
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  display:flex;
+  align-items: flex-start;
+  justify-content: flex-start; /* 左端寄せ */
+  overflow: visible;
+}
+
+/* 縦書き文字のサイズ＆寄せ具合（お好みで調整OK） */
+#proposal .catch-vert,
+#apply .catch-vert{
+  writing-mode: vertical-rl;
+  text-orientation: mixed;        /* かな漢字は縦、英数は横倒しで自然に */
+  font-family: "Zen Kaku Gothic New","Noto Sans JP","Yu Gothic",sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 3.6vw, 34px); /* ← ここで大きさ調整 */
+  letter-spacing: .12em;          /* 文字間を少し空けて“ふわっ”と */
+  line-height: 2;                 /* 縦方向の間隔を広めに */
+  color: #0a1f44;                 /* 濃紺（サイトの青系と相性◎） */
+  padding: 12px 6px;
+}
+
+/* 右側本文の余白を少し広げて読みやすく */
+#proposal .about-main .about-text,
+#apply .about-main .about-text{
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* セクション内のサブタイトル中央寄せ（既存が無ければ） */
+.section-subtitle{ text-align:left; margin:6px 0 22px; font-weight:700; letter-spacing:.02em; }
+
+/* 単体ボタンを中央配置に */
+.btn-center{
+  display: block;
+  width: fit-content;            /* 古いブラウザ対策 → max-content でもOK */
+  margin: 16px auto 0;           /* 上だけ余白、左右autoで中央 */
+}
+
 
 /* ---------- Features ---------- */
 .features{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px }
@@ -216,11 +531,47 @@ body{
 .feature-desc{ font-size:14px; color:var(--muted) }
 
 /* ---------- Speakers ---------- */
+#gallery{ background: #fff; }  /* 例：やさしい水色 */
+
 .speaker .avatar{
   width:96px; height:96px; border-radius:999px; background:#e5e7eb; margin-bottom:12px;
 }
 
+/* ===== JSギャラリーの見た目 ===== */
+.auto-scroll-gallery{
+  overflow: hidden;
+  position: relative;
+  /* 端をフェード（任意） */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.auto-scroll-gallery .track{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  will-change: transform;
+}
+.auto-scroll-gallery img{
+  width: clamp(160px, 28vw, 320px);
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  display: block;
+  transition: transform .25s ease;
+}
+.auto-scroll-gallery img:hover{ transform: scale(1.03); }
+
+@media (max-width:640px){
+  .auto-scroll-gallery .track{ gap: 12px; }
+  .auto-scroll-gallery img{ border-radius: 12px; }
+}
+
 /* ---------- Access (Map) ---------- */
+#access{
+  background: linear-gradient(180deg, #f6fbff 0%, #eaf6ff 100%);
+}
+
 .map-placeholder{
   aspect-ratio:16/9; width:100%;
   border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
@@ -234,12 +585,25 @@ body{
 .faq strong{ margin-right:4px }
 
 /* ---------- Footer ---------- */
-.site-footer{ border-top:1px solid var(--line); padding:28px 0; background:#fff }
-.footer-inner{ display:flex; flex-direction:column; gap:16px; justify-content:space-between }
-.footer-nav{ display:flex; gap:18px; list-style:none; padding:0; margin:0 }
-.footer-nav a{ text-decoration:none; color:inherit }
-@media (min-width:768px){
-  .footer-inner{ flex-direction:row; align-items:center }
+/* フッターの著作権を中央寄せ */
+/* フッターのコピーライトに上下の余白を追加 */
+.site-footer .copyright{
+  display: block;
+  text-align: center;
+
+  /* 外側の余白（上/下） */
+  margin-block: 16px 24px;   /* 上16px / 下24px */
+
+  /* 内側の余白（上/下）—ふわっとさせたい場合 */
+  padding-block: 6px;        /* 上6px / 下6px */
+}
+
+/* モバイルは少し広めにして見やすく */
+@media (max-width: 640px){
+  .site-footer .copyright{
+    margin-block: 20px 20x;
+    padding-block: 8px;
+  }
 }
 
 /* ---------- Badges / Notes ---------- */
@@ -248,7 +612,7 @@ body{
   background: linear-gradient(90deg,#4facfe,#7366ff,#b75cff); vertical-align:middle; margin-left:8px;
 }
 .tag-ghost{ color:#374151; background:#eef2ff }
-.section-note{ font-size:12px; color:#6b7280; margin-top:6px }
+.section-note{ font-size: 16px; color:#6b7280; margin-top:6px }
 .badge-year{
   display:inline-block; font-size:11px; color:#374151; background:#f3f4f6; border:1px solid #e5e7eb;
   padding:2px 6px; border-radius:6px; margin-left:8px; vertical-align:middle;
@@ -277,7 +641,7 @@ body{
   margin: 1rem auto;
 }
 
-ol.proposal-list{ margin:1rem 0; padding:0; list-style:none }
+ol.proposal-list{ max-width: 600px; margin:1rem 0; padding:0; list-style:none }
 ol.proposal-list li{
   margin:8px 0; position:relative; line-height:1.8;
   border:1px solid #A5BCC2; border-radius:6px; padding:10px 15px 10px 50px;
@@ -306,3 +670,45 @@ ol.proposal-list li::before{
 @media (max-width:640px){
   .hide-x-on-mobile{ display:none !important }
 }
+
+/* === Mobile: ハンバーガーを右端に配置 === */
+@media (max-width: 960px){
+  .site-header .header-inner{
+    position: relative;
+  }
+
+  /* 左寄せ指定を無効化して右端へ */
+  .nav{
+    position: static;        /* 以前の absolute/left 指定を戻す */
+  }
+  .nav-toggle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;             /* ← 右端に固定 */
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* メニューもボタンの真下で右寄せに開く */
+  .nav-list{
+    position: absolute;
+    right: 10px;             /* ← 右揃え */
+    left: auto;
+    top: calc(100% + 8px);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px;
+    display: none;           /* .show で開閉 */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 180px;
+    z-index: 60;
+  }
+  .nav-list.show{ display: flex; }
+}
+
