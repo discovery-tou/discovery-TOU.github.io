@@ -37,8 +37,6 @@
   padding-bottom: calc(var(--safe-bottom) + 24px);
 }
 
-
-
 /* 横幅の小さい端末でプレートがはみ出さないように */
 .hero h1.event-date{
   max-width: min(92%, 28ch);   /* 画面 or 文字幅で制限 */
@@ -85,6 +83,39 @@
 @media (min-width: 641px){
   .hero-inner{ justify-content: center; padding-top: 0; padding-bottom: 0; }
 }
+
+/* === HERO: 位置の最終確定（スマホ=上寄せ／PC=中央） === */
+.hero{
+  height: auto !important;
+}
+@supports (min-height: 100dvh){
+  .hero{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)) !important; }
+}
+@supports not (min-height: 100dvh){
+  .hero{ min-height: calc(100svh - var(--safe-top) - var(--safe-bottom)) !important; }
+}
+
+/* スマホ・小画面：上寄せ＋セーフエリアぶんの余白 */
+.hero-inner{
+  justify-content: flex-start !important;
+  padding-top: calc(var(--safe-top) + 20px) !important;
+  padding-bottom: calc(var(--safe-bottom) + 24px) !important;
+}
+
+/* タブレット以上：中央寄せに戻す（上書き） */
+@media (min-width: 641px){
+  .hero-inner{
+    justify-content: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* ヒーローの見出しがはみ出さないよう幅制限 */
+.hero h1.event-date{
+  max-width: min(92%, 28ch) !important;
+}
+
 
 /* ================================
    Base / Reset
@@ -552,3 +583,70 @@ h2::after{
   display:block; text-align:center;
   margin-block:16px 24px; padding-block:6px;
 }
+
+/* === 各調整 === */
+/* === HERO 縦位置の最終確定：親flexで制御 === */
+.hero{
+  display: flex !important;            /* 親で縦位置を制御 */
+  height: auto !important;
+}
+@supports (min-height: 100dvh){
+  .hero{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)) !important; }
+}
+@supports not (min-height: 100dvh){
+  .hero{ min-height: calc(100svh - var(--safe-top) - var(--safe-bottom)) !important; }
+}
+
+/* モバイル：上寄せ（安全域ぶんの余白を足す） */
+@media (max-width: 640px){
+  .hero{ align-items: flex-start !important; }   /* 縦＝上 */
+  .hero-inner{
+    height: auto !important;                     /* 100%を無効化 */
+    padding-top: calc(var(--safe-top) + 20px) !important;
+    padding-bottom: calc(var(--safe-bottom) + 24px) !important;
+  }
+}
+
+/* タブレット以上：縦センター */
+@media (min-width: 641px){
+  .hero{ align-items: center !important; }       /* 縦＝中央 */
+  .hero-inner{
+    height: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* はみ出し防止（そのまま維持） */
+.hero h1.event-date{ max-width: min(92%, 28ch) !important; }
+
+/* Hero 見出し：折り返し禁止＋幅制限を解除 */
+.hero h1.event-date{
+  white-space: nowrap !important;   /* 改行させない */
+  text-wrap: nowrap;                /* 新仕様対応（対応ブラウザだけ） */
+  word-break: keep-all;             /* CJKの不意な改行を抑制 */
+  max-width: 100% !important;       /* 以前の 28ch 制限を解除 */
+}
+
+/* 画面が狭いときは少し小さくして収める */
+@media (max-width: 430px){
+  .hero h1.event-date{
+    font-size: clamp(18px, 5.2vw, 28px);
+    padding: .25em .8rem;
+  }
+}
+
+/* === HERO：モバイルも縦センターに統一（最終オーバーライド） === */
+@media (max-width: 640px){
+  .hero{
+    display: flex !important;
+    align-items: center !important;    /* ← 上寄せを打ち消して中央へ */
+  }
+  .hero-inner{
+    height: auto !important;
+    padding-top: 0 !important;         /* 以前の safe-area 余白を無効化 */
+    padding-bottom: 0 !important;
+    justify-content: center !important;/* 念のため内側も中央 */
+  }
+}
+
