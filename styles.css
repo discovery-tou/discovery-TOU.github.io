@@ -16,6 +16,74 @@
   --font-round:"Zen Maru Gothic","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
   --font-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
   --font-latin:"Poppins",system-ui,sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* 高さは min-height で確保（100vh依存を避ける） */
+.hero{
+  height: auto !important; /* 既存の height を無効化 */
+  min-height: calc(100svh - var(--safe-top) - var(--safe-bottom));
+}
+/* 新しい端末では dvh を優先（より正確） */
+@supports (min-height: 100dvh){
+  .hero{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)); }
+}
+
+/* 上に寄せて、ノッチぶんだけ余白を足す */
+.hero-inner{
+  justify-content: flex-start;                  /* 上寄せ */
+  padding-top: calc(var(--safe-top) + 20px);    /* 上の空き */
+  padding-bottom: calc(var(--safe-bottom) + 24px);
+}
+
+
+
+/* 横幅の小さい端末でプレートがはみ出さないように */
+.hero h1.event-date{
+  max-width: min(92%, 28ch);   /* 画面 or 文字幅で制限 */
+  line-height: 1.15;
+  padding: .35em 1rem;
+}
+
+/* 画面が低い端末向けにさらに少しだけコンパクト化 */
+@media (max-height: 700px) and (max-width: 430px){
+  .hero h1.event-date{
+    font-size: clamp(20px, 5.5vw, 32px);
+    padding: .3em .9rem;
+  }
+}
+
+/* タブレット以上は従来どおり中央配置に戻す（好みで調整） */
+@media (min-width: 641px){
+  .hero-inner{ justify-content: center; padding-top: 0; padding-bottom: 0; }
+}
+
+/* 上に寄せて、ノッチぶんだけ余白を足す */
+.hero-inner{
+  justify-content: flex-start;                  /* 上寄せ */
+  padding-top: calc(var(--safe-top) + 20px);    /* 上の空き */
+  padding-bottom: calc(var(--safe-bottom) + 24px);
+}
+
+/* 横幅の小さい端末でプレートがはみ出さないように */
+.hero h1.event-date{
+  max-width: min(92%, 28ch);   /* 画面 or 文字幅で制限 */
+  line-height: 1.15;
+  padding: .35em 1rem;
+}
+
+/* 画面が低い端末向けにさらに少しだけコンパクト化 */
+@media (max-height: 700px) and (max-width: 430px){
+  .hero h1.event-date{
+    font-size: clamp(20px, 5.5vw, 32px);
+    padding: .3em .9rem;
+  }
+}
+
+/* タブレット以上は従来どおり中央配置に戻す（好みで調整） */
+@media (min-width: 641px){
+  .hero-inner{ justify-content: center; padding-top: 0; padding-bottom: 0; }
 }
 
 /* ================================
@@ -281,31 +349,24 @@ h2::after{
   }
 }
 
-/* About：スマホは本文をセンター揃え */
-@media (max-width: 640px){
+/* 1) 背景の最終確定：#aboutは白、#proposalは薄グレー */
+#about{ background: #fff !important; }
+#proposal{ background: var(--alt) !important; }
+
+/* 2) スマホ時：見出しだけ中央、本文は左揃えを固定 */
+@media (max-width: 768px){
   #about .about-main{
-    text-align: center;
+    text-align: left !important;           /* 親は左に固定 */
   }
   #about .about-main .about-text{
-    text-align: center;      /* 段落も中央 */
-    margin-inline: auto;     /* 余白で中央寄せを安定化 */
-    max-width: 42em;         /* 読みやすさ用（不要なら削除） */
+    text-align: left !important;           /* 段落も左 */
+    margin-inline: 0 !important;           /* 以前の auto を打ち消し */
   }
-}
-
-/* About / Proposal を .section-alt と同じ背景色に（セクション全体） */
-#about,
-#proposal{
-  background: var(--alt);
-}
-
-/* 以前つけた本文パネルの色・枠を無効化（バンド着色に統一） */
-#about .about-main,
-#proposal .about-main{
-  background: transparent;
-  border: 0;
-  /* パディングはお好みで。スッキリなら 0、余白残すなら下の行を活かす */
-  /* padding: 20px 24px; */
+  #about .about-main h2{
+    display: table;                         /* 自分の幅にフィット */
+    margin: 0 auto 12px;                    /* 見出しだけ中央配置 */
+    text-align: center;
+  }
 }
 
 /* ================================
