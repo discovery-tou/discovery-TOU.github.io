@@ -346,8 +346,17 @@ h2::after{
     background: var(--alt) !important;
   }
 }
-
 @media (max-width:640px){ .program-cta{ padding:14px 16px; font-size:18px } }
+
+/* Proposal セクション上の余白をタイトに */
+#proposal{
+  padding-top: 1px;
+}
+
+/* スマホはさらに少し詰める */
+@media (max-width: 640px){
+  #proposal{ padding-top: 1px; }
+}
 
 /* ================================
    Proposal list
