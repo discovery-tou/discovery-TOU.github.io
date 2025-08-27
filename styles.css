@@ -353,20 +353,27 @@ h2::after{
 #about{ background: #fff !important; }
 #proposal{ background: var(--alt) !important; }
 
-/* 2) スマホ時：見出しだけ中央、本文は左揃えを固定 */
-@media (max-width: 768px){
-  #about .about-main{
-    text-align: left !important;           /* 親は左に固定 */
-  }
-  #about .about-main .about-text{
-    text-align: left !important;           /* 段落も左 */
-    margin-inline: 0 !important;           /* 以前の auto を打ち消し */
-  }
-  #about .about-main h2{
-    display: table;                         /* 自分の幅にフィット */
-    margin: 0 auto 12px;                    /* 見出しだけ中央配置 */
-    text-align: center;
-  }
+/* === About：見出しだけ中央、本文は常に左 === */
+
+/* 親は必ず左寄せに固定（スマホ・PC共通） */
+#about .about-main{
+  text-align: left !important;
+}
+
+/* 見出し h2 だけ自分で中央に寄せる */
+#about .about-main h2{
+  display: table;           /* コンテンツ幅にだけフィット */
+  margin: 0 auto 12px;      /* 自分だけ中央配置 */
+  text-align: center;       /* 下線も中央に */
+}
+
+/* 本文系はすべて左寄せに強制（p以外が入っても安心） */
+#about .about-main .about-text,
+#about .about-main p,
+#about .about-main ul,
+#about .about-main ol{
+  text-align: left !important;
+  margin-inline: 0 !important;  /* 以前に auto を入れていた場合の打ち消し */
 }
 
 /* ================================
