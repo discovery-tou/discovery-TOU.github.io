@@ -26,8 +26,8 @@
   min-height: calc(100svh - var(--safe-top) - var(--safe-bottom));
 }
 /* 新しい端末では dvh を優先（より正確） */
-@supports (min-height: 100dvh){
-  .hero{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)); }
+@supports (min-height: 100svh){
+  .hero{ min-height: calc(100svh - var(--safe-top) - var(--safe-bottom)); }
 }
 
 /* 上に寄せて、ノッチぶんだけ余白を足す */
@@ -82,17 +82,6 @@
 /* タブレット以上は従来どおり中央配置に戻す（好みで調整） */
 @media (min-width: 641px){
   .hero-inner{ justify-content: center; padding-top: 0; padding-bottom: 0; }
-}
-
-/* === HERO: 位置の最終確定（スマホ=上寄せ／PC=中央） === */
-.hero{
-  height: auto !important;
-}
-@supports (min-height: 100dvh){
-  .hero{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)) !important; }
-}
-@supports not (min-height: 100dvh){
-  .hero{ min-height: calc(100svh - var(--safe-top) - var(--safe-bottom)) !important; }
 }
 
 /* スマホ・小画面：上寄せ＋セーフエリアぶんの余白 */
@@ -281,14 +270,29 @@ h2::after{
 /* ================================
    Hero
 ================================ */
-.hero{
-  background-image:url("images/main_800x600.png");
-  background-size:cover; background-position:center; background-repeat:no-repeat;
-  height:100vh; height:100svh; min-width:390px;
+.hero {
+  /* background-imageのスタイルはそのまま */
+  background-image: url("images/main_800x600.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+ 
+  /* この1行で画面の高さいっぱいに設定 */
+  height: 100svh;
 }
-@media (max-width:640px){
-  .hero{ background-image:url("images/main_390x500.png"); background-position:center 45% }
+@media (min-width: 641px) {
+  .hero {
+    /* PC版用の画像がある場合はこちらで指定 */
+    background-image: url("images/main_800x600.png");
+  }
 }
+@media (max-width: 640px) {
+  .hero {
+    /* モバイル版用の画像に切り替え */
+    background-image: url("images/main_390x500.png");
+  }
+}
+
 .hero-inner{
   position:relative; z-index:1; display:flex; flex-direction:column;
   justify-content:center; align-items:center; text-align:center; height:100%; padding:0 16px;
@@ -588,12 +592,11 @@ h2::after{
 /* === HERO 縦位置の最終確定：親flexで制御 === */
 .hero{
   display: flex !important;            /* 親で縦位置を制御 */
-  height: auto !important;
 }
-@supports (min-height: 100dvh){
-  .hero{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)) !important; }
+@supports (min-height: 100svh){
+  .hero{ min-height: calc(100svh - var(--safe-top) - var(--safe-bottom)) !important; }
 }
-@supports not (min-height: 100dvh){
+@supports not (min-height: 100svh){
   .hero{ min-height: calc(100svh - var(--safe-top) - var(--safe-bottom)) !important; }
 }
 
