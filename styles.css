@@ -153,10 +153,12 @@ h2::after{
   .nav-list.show{ display:flex; }
 }
 
-/* CTA表示制御 */
-@media (max-width:1024px){
-  .header-cta{ display:none; }
+/* PC以外は非表示、PCのみ表示 */
+.header-cta{ display:none !important; }
+@media (min-width:1025px){
+  .header-cta{ display:inline-flex !important; }
 }
+
 /* Xアイコンを狭幅で隠す（任意） */
 @media (max-width:1100px){
   .hide-x-on-mobile{ display:none!important; }
