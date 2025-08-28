@@ -454,7 +454,7 @@ h2::after{
 .site-footer{ text-align:center; }
 .site-footer .footer-inner{
   display:flex; justify-content:center; align-items:center;
-  flex-direction:column; gap:8px; padding-block:16px;
+  flex-direction:column; gap:5px; padding-block:1px;
 }
 @media (min-width:768px){
   .site-footer .footer-inner{ flex-direction:row; align-items:center; }
