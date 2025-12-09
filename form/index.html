@@ -4,76 +4,104 @@
 <meta charset="UTF-8">
 <title>@ディスカバリー 来場者申込</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="@ディスカバリー来場者申込フォーム" />
+<link rel="stylesheet" href="../styles.css" />
+<meta property="og:title" content="@ディスカバリー来場者申込" />
+<meta property="og:description" content="@ディスカバリー 来場者申込" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://discovery-tou.github.io/form/index.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 <style>
   body {
-    font-family: sans-serif;
-    line-height: 1.8;
     max-width: 750px;
     margin: 40px auto;
     padding: 0 20px;
-    color: #333;
+    line-height: 1.8;
   }
-  h1 {
+  
+h1 {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 1.8em;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin: 0 0 20px;
+  padding-bottom: 6px;
+  display: block; 
+  width: fit-content;  
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 100%; 
+  height: 4px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #4facfe, #7366ff, #b75cff);
+  margin: 6px auto 0;          /* ← 完全中央寄せ & 伸び縮みしない */
+}
+
+  #speakers > h2 {
+    display: block;
+    text-align: center;
+    margin: 0 0 18px;
     font-size: 1.7em;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 8px;
-  }
-  a {
-    color: #0066cc;
-    font-size: 1.05em;
-  }
-  .form-box {
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    padding: 16px;
-    border-radius: 6px;
-    margin: 22px 0;
+    font-family: "Yusei Magic", var(--font-body, system-ui);
   }
 
-  /* スマホ向け調整 */
+  .program-cta {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .form-box {
+    max-width: 700px;
+    margin: 22px auto;
+  }
+
   @media (max-width: 600px) {
     body {
       margin: 20px auto;
       padding: 0 14px;
       font-size: 0.95em;
     }
-    h1 {
+    #speakers > h2 {
       font-size: 1.4em;
     }
-    .form-box {
-      padding: 12px;
-      margin: 18px 0;
-    }
-    a {
-      font-size: 1em;
-    }
+  }
+  .form-box p:first-child {
+  text-align: center;
   }
 </style>
+
 </head>
+	
 <body>
-
-<h1>@ディスカバリー来場者申込</h1>
-
-<p>
+<section id="speakers" class="form">
+<h1 style="display:block; text-align:center; margin:0 auto 24px;">@ディスカバリー来場者申込</h1>
+<div class="program-cta">
 @ディスカバリーへのご来場を希望される方は、下記のフォームよりお申し込みください。
 </p>
 
 <div class="form-box">
   <p><strong>▼ 来場お申し込みフォーム</strong></p>
   <p>
-    <a href="https://forms.gle/Hw91zf9VQ5BjoQDt5" target="_blank">
+	<a class="btn btn-primary btn-lg btn-center" href="https://forms.gle/Hw91zf9VQ5BjoQDt5" target="_blank" rel="noopener">
       来場お申し込みフォームはこちら
     </a>
   </p>
 </div>
-
+</section>
 <p>
 【ご注意】<br>
-<span style="font-weight: bold;">卒業生の方は、大学のアカウント（Gmail）をログインしている場合はそれをログアウトしたうえで 
+<span style="font-weight: bold;">卒業生の方は、大学のアカウント（Gmail）でログインしている場合はそれをログアウトしたうえで 
   フォームからお申し込みください。</span><br>
 なお、お申し込み後の確認メールは送信されません。
 </p>
 
 </body>
-
 </html>
