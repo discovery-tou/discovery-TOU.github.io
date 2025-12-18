@@ -593,7 +593,7 @@ nav a,
     top: 72px;
 
     padding: 8px 12px;
-    font-size: 14px;
+    font-size: 12px;
     gap: 6px;
     max-width: calc(100% - 24px);
   }
@@ -603,7 +603,7 @@ nav a,
   .hero-float-badge{
 	top: 72px;
 	  
-    font-size: 13px;
+    font-size: 12px;
     padding: 7px 10px;
   }
 }
