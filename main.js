@@ -109,3 +109,47 @@ links.forEach(link => {
   });
 })();
 
+// ===== Nav dropdown toggle =====
+const navDrop = document.getElementById('navDrop');
+const navDropBtn = document.getElementById('navDropBtn');
+const navSublist = document.getElementById('nav-sublist');
+
+function closeDropdown() {
+  if (!navDrop || !navDropBtn) return;
+  navDrop.classList.remove('open');
+  navDropBtn.setAttribute('aria-expanded', 'false');
+}
+
+function toggleDropdown() {
+  if (!navDrop || !navDropBtn) return;
+  const isOpen = navDrop.classList.toggle('open');
+  navDropBtn.setAttribute('aria-expanded', String(isOpen));
+}
+
+if (navDrop && navDropBtn) {
+  navDropBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleDropdown();
+  });
+
+  // dropdown内リンクを押したら閉じる（＋モバイルメニューも閉じる）
+  navSublist?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      closeDropdown();
+      navList?.classList.remove('show');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // 外側クリックで閉じる
+  document.addEventListener('click', (e) => {
+    if (!navDrop.contains(e.target)) closeDropdown();
+  });
+
+  // ESCで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDropdown();
+  });
+}
+
+

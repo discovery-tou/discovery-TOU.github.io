@@ -20,31 +20,56 @@
 </head>
 <body>
   <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
+<header class="site-header">
+  <div class="container header-inner">
+
+    <div class="header-left">
       <a class="brand" href="#">
         <span class="brand-text"><img src="images/logo.svg" width="320" alt="ディスカバリーロゴ" /></span>
       </a>
-      <nav class="nav" aria-label="メインメニュー">
-        <button class="nav-toggle" aria-controls="nav-list" aria-expanded="false" id="navToggle" title="メニュー">☰</button>
-        <ul class="nav-list" id="nav-list">
-          <li><a href="#about">イベント概要</a></li>
-          <li><a href="#program">2025年度の予定</a></li>
-          <li><a href="#speakers">2024年度の活動紹介</a></li>
-          <li><a href="#access">アクセス</a></li>
-          <li><a href="#contact">お問い合わせ</a></li>
-        </ul>
-      </nav>
-      <a class="btn btn-primary header-cta" href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener">参加エントリー</a>
-      <a class="brand-text hide-x-on-mobile" href="https://x.com/discovery_TOU" target="_blank" rel="noopener">
-        <img src="images/x_logo_bk.png" width="30" alt="X公式アカウント" />
-      </a>
+
+      <a class="btn btn-primary header-cta btn-primary-big"
+         href="https://discovery-tou.github.io/form/index.html"
+         target="_blank" rel="noopener">来場者応募</a>
     </div>
-  </header>
+
+    <nav class="nav" aria-label="メインメニュー">
+      <button class="nav-toggle" aria-controls="nav-list" aria-expanded="false" id="navToggle" title="メニュー">☰</button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#about">イベント概要</a></li>
+
+        <li class="nav-dropdown" id="navDrop">
+          <button class="nav-dropbtn" id="navDropBtn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-sublist">
+            予定と活動紹介 <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <ul class="nav-sublist" id="nav-sublist" role="menu">
+            <li role="none"><a role="menuitem" href="#program">2025年度</a></li>
+            <li role="none"><a role="menuitem" href="#speakers">2024年度</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#access">アクセス</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn-gradient-outline header-cta header-cta-right"
+       href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener">
+      <span class="btn-text-gradient">発表者応募</span>
+    </a>
+
+  </div>
+</header>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="container hero-inner">
+    <a class="hero-float-badge"
+	   href="https://discovery-tou.github.io/form/index.html"
+	   target="_blank" rel="noopener">
+	   来場者の募集 はじまりました！
+	</a>
+	  
+	<div class="container hero-inner">	
       <h1 class="event-date">2026年2月28日(土) 開催</h1>
     </div>
   </section>
@@ -142,8 +167,7 @@
       </div>
     </div>
 	    <!-- 中央配置の単独ボタン -->
-  <a class="btn btn-primary btn-lg btn-center" href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener">
-    参加エントリー / お問い合わせ
+  <a class="btn btn-gradient-outline btn-lg btn-center" href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener"><span class="btn-text-gradient">発表者エントリー / お問い合わせ</span>
   </a>
   </section>
 	
@@ -303,8 +327,11 @@
       <div>
         <h2>参加申込・お問い合わせ</h2>
         <p>フォームより必要事項をご入力ください。</p>
+		<div class="actions">
+          <a class="btn btn-primary btn-lg btn-primary-big2" href="https://discovery-tou.github.io/form/index.html" target="_blank" rel="noopener">来場をご希望の方はここから</a>
+        </div>
         <div class="actions">
-          <a class="btn btn-primary btn-lg" href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener">参加エントリー / お問い合わせ</a>
+          <a class="btn btn-gradient-outline btn-lg" href="https://forms.gle/6Vphu5F8yuwr7hSY6" target="_blank" rel="noopener"><span class="btn-text-gradient">発表者エントリー / お問い合わせ</span></a>
         </div>
         <p>＠ディスカバリー X アカウント</p>
         <a href="https://x.com/discovery_TOU" target="_blank" rel="noopener">

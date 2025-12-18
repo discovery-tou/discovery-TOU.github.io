@@ -215,6 +215,33 @@ nav a,
   display: inline-flex;
 }
 
+/* ナビ全体：縦方向を中央に揃える */
+.nav-list {
+  align-items: center;
+}
+
+/* li自体も中央揃え */
+.nav-list > li {
+  display: flex;
+  align-items: center;
+}
+
+/* 通常リンク中央揃え */
+.nav-list a {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding-block: 8px;
+}
+
+/* ドロップダウンのボタン */
+.nav-dropbtn {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding-block: 8px;
+}
+
 /* ヘッダー余白・ナビゲーションの拡張（デスクトップ） */
 @media (min-width: 960px) {
   .site-header {
@@ -237,7 +264,47 @@ nav a,
   }
 }
 
-/* Xリンクのインタラクション */
+/* ===== Header layout: 3-column grid ===== */
+@media (min-width: 1025px) {
+  .header-inner{
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* 左（ロゴ+来場者）/ 中央メニュー / 右（発表者） */
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  .header-left{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-self: start;
+    min-width: 0;
+  }
+
+  .nav{
+    justify-self: center;
+    width: max-content;
+    flex: initial; /* flex:1 を無効化 */
+  }
+
+  .header-cta-right{
+    justify-self: end;
+  }
+
+  /* Grid時は余計な左マージンを消す（ズレ防止） */
+  .header-cta{
+    margin-left: 0;
+  }
+	
+  .header-left .header-cta { margin-left: 20px; } /* 来場者だけ少し右 */
+  .header-cta-right { margin-right: 20px; }       /* 発表者だけ少し左（右端から離す）*/
+}
+
+@media (max-width: 960px) {
+  .nav-toggle { z-index: 100; }
+}
+
+/* Xリンク */
 .site-header a.hide-x-on-mobile {
   display: inline-flex;
   align-items: center;
@@ -293,6 +360,108 @@ nav a,
   }
 }
 
+/* ===== Nav dropdown ===== */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropbtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding-block: 8px;
+  font: inherit;
+  font-family: var(--font-round);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+}
+
+@media (max-width: 960px) {
+  .nav-dropbtn {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    padding: 8px 0;
+    margin: 0;
+  }
+}
+
+/* スマホ：ドロップダウン内を縦並びにして右ズレ防止 */
+@media (max-width: 960px) {
+  .nav-list > li {
+    display: block;
+  }
+
+  /* ドロップダウンだけ縦に積む */
+  .nav-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* ボタンとサブメニューを全幅に */
+  .nav-dropbtn,
+  .nav-sublist {
+    width: 100%;
+  }
+
+  /* インデント */
+  .nav-sublist {
+    padding-left: 12px;
+  }
+}
+
+.nav-dropbtn:hover {
+  text-decoration: underline;
+}
+
+.nav-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 180px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  z-index: 70;
+}
+
+/* PC: 位置はドロップダウン */
+@media (min-width: 961px) {
+  .nav-sublist {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+  }
+
+  /* ホバー/フォーカスでも開く */
+  .nav-dropdown:hover .nav-sublist,
+  .nav-dropdown:focus-within .nav-sublist {
+    display: flex;
+  }
+}
+
+/* JSで開閉するクラス */
+.nav-dropdown.open .nav-sublist {
+  display: flex;
+}
+
+/* モバイル: ナビのドロップ内で展開（position: static） */
+@media (max-width: 960px) {
+  .nav-sublist {
+    position: static;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+}
+
 /* PC以外は非表示、PCのみ表示 */
 .header-cta {
   display: none !important;
@@ -319,10 +488,7 @@ nav a,
 }
 
 /* ================================
-   Hero（クリーン & 安定版）
-   - dvh優先 / svhフォールバック
-   - stickyヘッダーぶんだけ差し引く
-   - セーフエリアは内側余白で吸収
+   Hero
 ================================ */
 .hero {
   display: flex;
@@ -333,11 +499,16 @@ nav a,
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain; /* ← cover → contain に変更 */
-  background-color: #cedde8;
-
+  background-color: #cedde8;	
+	
   /* 高さは画面全体からヘッダー分を引く */
   min-height: calc(100dvh - var(--header-h));
 }
+
+.hero{
+  position: relative;
+}
+
 @supports not (height: 100dvh) {
   .hero {
     min-height: calc(100svh - var(--header-h));
@@ -376,6 +547,50 @@ nav a,
   text-align: center;
 }
 
+.hero { position: relative; }
+
+/* Hero左上：来場者募集のお知らせバッジ（これだけ残す） */
+.hero-float-badge{
+  position: absolute;
+  top: calc(var(--safe-top) + 16px);
+  left: 16px;
+  max-width: calc(100% - 32px);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: #dc2626;
+  text-decoration: none;
+
+  font-family: var(--font-round);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+@media (min-width: 641px){
+  .hero-float-badge{
+    left: calc((100vw - var(--container)) / 2 + 32px);
+	top: calc(var(--safe-top) + 100px);
+  }
+}
+
+@media (max-width: 640px){
+  .hero-float-badge{
+    top: 40px;
+    left: 12px;
+  }
+}
+
 /* 見出し */
 .hero h1 {
   font-size: clamp(28px, 7vw, 64px);
@@ -384,6 +599,7 @@ nav a,
   color: #fff;
   text-shadow: none;
 }
+
 .hero h1 img {
   width: 100%;
   max-width: 800px;
@@ -443,6 +659,17 @@ nav a,
   border: none;
   transition: filter 0.2s ease;
 }
+
+/* 小さいほう */
+.btn-primary-big{
+  padding: 0.8rem 1.1rem;   /* お好みで微調整 */
+}
+
+/* 大きいほう*/
+.btn-primary-big2{
+  padding: 1.08rem 1.5rem;
+}
+
 .btn-primary:hover {
   filter: brightness(1.1);
 }
@@ -468,6 +695,43 @@ nav a,
   display: block;
   width: fit-content;
   margin: 16px auto 0;
+}
+
+/* 白抜き＋グラデ枠 */
+.btn-gradient-outline {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    var(--brand-gradient) border-box;
+}
+
+/* 文字をグラデに */
+.btn-text-gradient {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* Safari対策 */
+}
+
+a.btn.btn-gradient-outline{
+  transition: opacity .12s ease;
+}
+
+a.btn.btn-gradient-outline:hover,
+a.btn.btn-gradient-outline:focus-visible{
+  opacity: .75;
+}
+
+/* hover（ほんのり反応） */
+.btn-gradient-outline:hover {
+  filter: brightness(1.02);
+}
+
+/* キーボード操作のフォーカス見やすく */
+.btn-gradient-outline:focus-visible {
+  outline: 3px solid rgba(79, 172, 254, 0.35);
+  outline-offset: 2px;
 }
 
 /* ================================
@@ -808,6 +1072,12 @@ nav a,
   gap: 12px;
   flex-wrap: wrap;
 }
+
+/* actions が連続したときだけ間をあける */
+.actions + .actions {
+  margin-top: 20px;
+}
+
 .faq {
   list-style: none;
   padding: 0;
