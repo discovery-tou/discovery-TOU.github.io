@@ -580,7 +580,11 @@ nav a,
 @media (min-width: 641px){
   .hero-float-badge{
     left: calc((100vw - var(--container)) / 2 + 32px);
-	top: calc(var(--safe-top) + 100px);
+    top: calc(var(--safe-top) + 100px);
+
+    font-size: 18px;        /* ← 文字を大きく */
+    padding: 12px 18px;     /* ← バッジ自体を大きく */
+    gap: 10px;              /* ← 中の間隔も少し広げる */
   }
 }
 
