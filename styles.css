@@ -586,8 +586,20 @@ nav a,
 
 @media (max-width: 640px){
   .hero-float-badge{
-    top: 40px;
+    top: 72px;
     left: 12px;
+
+    padding: 8px 12px;
+    font-size: 14px;
+    gap: 6px;
+    max-width: calc(100% - 24px);
+  }
+}
+
+@media (max-width: 390px){
+  .hero-float-badge{
+    font-size: 13px;
+    padding: 7px 10px;
   }
 }
 
