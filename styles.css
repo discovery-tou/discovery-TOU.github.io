@@ -860,6 +860,13 @@ a.btn.btn-gradient-outline:focus-visible{
   margin-inline: 0 !important;
 }
 
+@media (max-width: 640px){
+  #about .about-main .about-text{
+    font-size: 15px;
+    line-height: 1.85;
+  }
+}
+
 /* スマホ：横書き＆中央に切替 */
 @media (max-width: 768px) {
   .about-grid {
@@ -1148,3 +1155,4 @@ a.btn.btn-gradient-outline:focus-visible{
   margin-block: 16px 24px;
   padding-block: 6px;
 }
+
