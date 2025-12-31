@@ -1027,6 +1027,21 @@ a.btn.btn-gradient-outline:focus-visible{
   }
 }
 
+.notice{
+  max-width: 900px;
+  margin: 10px auto 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  line-height: 1.7;
+  font-weight: 700;
+}
+
+.notice-danger{
+  color: #b91c1c;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.35);
+}
+
 /* Proposal セクションの背景と余白 */
 #proposal {
   background: var(--alt) !important;
