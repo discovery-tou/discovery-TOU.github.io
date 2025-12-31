@@ -696,10 +696,11 @@ nav a,
   backdrop-filter: blur(4px);
 }
 
-@media (max-width: 640px) {
-  .hero.hero-2024 h1.hero-2024-title {
-    font-size: 22px;
-    padding: 0.45em 0.9em;
+@media (max-width: 640px){
+  .hero.hero-2024 h1.hero-2024-title{
+    font-size: 18px;
+    padding: 0.3em 0.6em;
+    background: rgba(0,0,0,0.25);
   }
 }
 
