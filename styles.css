@@ -591,7 +591,6 @@ nav a,
 @media (max-width: 640px){
   .hero-float-badge{
     top: 72px;
-
     padding: 8px 12px;
     font-size: 12px;
     gap: 6px;
@@ -624,7 +623,7 @@ nav a,
   margin-bottom: 0.5rem;
 }
 
-/* 日付プレート（折り返し可 & 横あふれ対策） */
+/* 日付プレート */
 .hero h1.event-date {
   display: inline-block;
   font-weight: 500;
@@ -633,6 +632,7 @@ nav a,
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 16px;
+  margin-top: 35px;
   padding: 0.3em 1rem;
 
   /* 横あふれ防止 */
@@ -645,11 +645,32 @@ nav a,
   font-size: clamp(22px, 5vw, 40px);
   line-height: 1.15;
 }
-@media (max-width: 430px) {
+@media (max-width: 640px) {
   .hero h1.event-date {
     font-size: clamp(18px, 5.2vw, 28px);
     padding: 0.25em 0.8rem;
+	margin-top: -15px;
   }
+}
+
+/* Heroの開催日時：3行にする */
+.hero h1.event-date .event-label,
+.hero h1.event-date .event-time{
+  display: block;     /* ← これが決定打 */
+}
+
+.hero h1.event-date .event-label{
+  font-size: 0.55em;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+
+.hero h1.event-date .event-time{
+  margin-top: 8px;
+  font-size: 0.7em;
+  font-weight: 600;
+  opacity: 0.9;
 }
 
 /* hero-2024 */
@@ -734,19 +755,6 @@ nav a,
 @media (max-width: 640px){
   .hero.hero-2024 {
     min-height: 38vh;
-  }
-}
-
-#speakers .about-text{
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.9;
-  color: #444;
-}
-@media (max-width: 640px){
-  #speakers .about-text{
-    font-size: 15px;
-    line-height: 1.85;
   }
 }
 
