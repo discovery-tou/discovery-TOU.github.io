@@ -1010,6 +1010,11 @@ a.btn.btn-gradient-outline:focus-visible{
   color: #0a1f44;
 }
 
+.access-guide {
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
 /* ================================
    Grids & Cards
 ================================ */
