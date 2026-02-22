@@ -78,25 +78,37 @@ body {
 /* ================================
    Typography
 ================================ */
-h2 {
-  font-family: "Yusei Magic", var(--font-body);
-  font-weight: 400;
-  font-size: 28px;
-  letter-spacing: 0.02em;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 6px;
-  text-align: center;
+h2{
+  display:block;
+  width:100%;
+
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.08em;
+
+  margin: 56px 0 24px;
+  padding: 18px 22px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(
+    90deg,
+    #4a1fd3,  /* 濃い紫寄り */
+    #7b5cff   /* やや明るめ */
+  );
+
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(26,42,108,0.18);
 }
-h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #4facfe, #7366ff, #b75cff);
-  border-radius: 2px;
+
+#access h2,
+#contact h2{
+  font-size: 18px;     /* 30 → 24 */
+  letter-spacing: 0.06em;
+  padding: 14px 18px;  /* 少しだけ詰める */
+  border-radius: 0;
 }
 
 /* 見出し系の丸ゴ適用対象 */
@@ -140,6 +152,11 @@ nav a,
 }
 .section-head.center {
   justify-content: center;
+}
+
+/* programだけ先頭にheroがあるので、上余白を消す */
+#program.section{
+  padding-top: 0;
 }
 
 /* ================================
@@ -531,6 +548,85 @@ nav a,
   }
 }
 
+/* hero title */
+/* hero title（共通） */
+.hero-title{
+  margin: 0;
+  line-height: 1.2;
+  text-wrap: balance;
+  font-family: var(--font-round);
+  font-size: clamp(18px, 3.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+
+  color: #fff;
+  padding: 0.8em 1.4em; 
+  border-radius: 18px;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+}
+
+.ero-title{
+  line-height: 1.25;   /* 1.2 → 1.25 */
+}
+
+.hero-title br{
+  line-height: 0;
+}
+
+/* イベント見出し用 hero 内側（再利用前提） */
+.hero-event-inner{
+  min-height: min(55vh, 520px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* program内 hero は“見出し帯”なので高さを持たせない */
+#program .hero{
+  min-height: auto;      
+  padding: 48px 0;
+}
+
+#program .hero-event-inner{
+  min-height: auto;
+}
+
+/* program内のheroは帯：高さを固定しない（最優先で上書き） */
+#program .hero-event-inner{
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+#program .hero{
+  min-height: auto !important;
+  padding: 48px 0 !important; /* 帯の高さ。好みで 20〜36 */
+  display: block;             /* flexの影響を消す */
+}
+
+.hero-title-main{
+  font-family: "Yusei Magic", var(--font-round);
+    font-size: clamp(16px, 4vw, 20px);
+  letter-spacing: 0.08em;
+}
+
+.hero-title-sub{
+  display: block;
+  margin-top: 0.4em;
+  font-family: var(--font-round);
+  font-size: clamp(14px, 2.8vw, 20px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+.hero h1.hero-title{
+  font-size: clamp(40px, 3.2vw, 32px);
+  margin: 0;
+}
+
 /* 内側 */
 .hero-inner {
   position: relative;
@@ -717,6 +813,18 @@ nav a,
   backdrop-filter: blur(4px);
 }
 
+.hero::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+
+  background: #5e17eb;
+  padding-bottom: 1px;
+}
+
 @media (max-width: 640px){
   .hero.hero-2024 h1.hero-2024-title{
     font-size: 18px;
@@ -857,6 +965,51 @@ a.btn.btn-gradient-outline:focus-visible{
   outline-offset: 2px;
 }
 
+/* 日時 */
+.program-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.program-info {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  padding: 24px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.program-info dl {
+  display: grid;
+  gap: 20px;
+}
+
+.program-info dt {
+  font-weight: 700;
+  color: #0a1f44;
+  margin-bottom: 4px;
+}
+
+.program-info dd {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.program-info .sub {
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+.program-note {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  text-align: center;
+  font-weight: 600;
+  color: #0a1f44;
+}
+
 /* ================================
    Grids & Cards
 ================================ */
@@ -952,18 +1105,8 @@ a.btn.btn-gradient-outline:focus-visible{
   color: #444;
 }
 
-/* 見出しだけ中央、本文は左寄せ */
-#about .about-main h2 {
-  display: table;
-  margin: 0 auto 12px;
-  text-align: center;
-}
-#about .about-main .about-text,
-#about .about-main p,
-#about .about-main ul,
-#about .about-main ol {
-  text-align: left !important;
-  margin-inline: 0 !important;
+#about.section{
+  padding-top: 18px;
 }
 
 @media (max-width: 640px){
@@ -995,6 +1138,45 @@ a.btn.btn-gradient-outline:focus-visible{
     letter-spacing: 0.02em;
     display: inline-block;
   }
+}
+
+/* ===== Aboutを1カラム化（縦書きキャッチを消す） ===== */
+.about-catch{
+  display: none !important;
+}
+
+.about-grid{
+  grid-template-columns: 1fr !important;
+}
+
+/* ===== 文章の見やすさ微調整（任意） ===== */
+#about .about-text{
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+/* ===== About内のリード見出し（旧h2デザイン） ===== */
+.about-lead{
+  font-family: var(--font-round);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+  margin: 0 0 4px;
+}
+
+.about-lead::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4facfe, #7366ff, #b75cff);
+  border-radius: 2px;
 }
 
 /* ================================
@@ -1121,6 +1303,36 @@ a.btn.btn-gradient-outline:focus-visible{
   border-radius: 50%;
   text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Program内：展示内容（h4）だけ装飾 */
+#program .program-subtitle{
+  display: block;
+  width: 100%;
+
+  font-family: var(--font-round);
+  font-weight: 600;          /* h2より軽く */
+  font-size: 20px;           /* h2より小さく */
+  letter-spacing: 0.05em;
+
+  margin: 40px 0 16px;
+  padding: 12px 16px;
+
+  border: none;
+  border: 2px solid transparent;   /* h2より細く */
+
+  background: linear-gradient(
+    90deg,
+    #4a1fd3,  /* 濃い紫寄り */
+    #7b5cff   /* やや明るめ */
+  );
+
+  color: #ffffff;
+}
+
+#program .center-btn {
+  display: flex;
+  justify-content: center;
 }
 
 /* ================================
