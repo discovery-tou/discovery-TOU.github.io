@@ -95,8 +95,8 @@ h2{
 
   background: linear-gradient(
     90deg,
-    #4a1fd3,  /* 濃い紫寄り */
-    #7b5cff   /* やや明るめ */
+    #4c86b3,  /* 濃い紫寄り */
+    #b4daf7  /* やや明るめ */
   );
 
   color: #ffffff;
@@ -112,7 +112,6 @@ h2{
   padding: 14px 18px;
 
   border-radius: 14px;
-  border: 2px solid transparent;
 }
 
 /* 見出し系の丸ゴ適用対象 */
@@ -1331,8 +1330,8 @@ a.btn.btn-gradient-outline:focus-visible{
 
   background: linear-gradient(
     90deg,
-    #4a1fd3,  /* 濃い紫寄り */
-    #7b5cff   /* やや明るめ */
+    #4c86b3,
+    #b4daf7
   );
 
   color: #ffffff;
