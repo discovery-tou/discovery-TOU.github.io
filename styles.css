@@ -1270,6 +1270,23 @@ a.btn.btn-gradient-outline:focus-visible{
   color: #6b7280;
 }
 
+/* マップ・ライトニングトーク */
+.img-block{
+  max-width: 860px;
+  margin: 12px auto 24px;
+  text-align: center;
+}
+.img-block img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.stream-link{
+  margin-top: 16px;
+}
+
 /* ================================
    Proposal list
 ================================ */
