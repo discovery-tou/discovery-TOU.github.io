@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>@ディスカバリー 配信実験入り口</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="@ディスカバリー来場者申込フォーム" />
+<meta property="og:title" content="@ディスカバリー来場者申込" />
+<meta property="og:description" content="@ディスカバリー 来場者申込" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://discovery-tou.github.io/form/index.html" />
+<link rel="stylesheet" href="../styles.css" />	
+<link rel="icon" type="image/svg+xml" href="../images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+  body {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.8;
+	background: var(--alt);
+  }
+  
+h1 {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 1.8em;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin: 0 0 20px;
+  padding-bottom: 6px;
+  display: block; 
+  width: fit-content;  
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 100%; 
+  height: 4px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #4facfe, #7366ff, #b75cff);
+  margin: 6px auto 0;          /* ← 完全中央寄せ & 伸び縮みしない */
+}
+
+  #speakers > h2 {
+    display: block;
+    text-align: center;
+    margin: 0 0 18px;
+    font-size: 1.7em;
+    font-family: "Yusei Magic", var(--font-body, system-ui);
+  }
+
+  .program-cta {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .form-box {
+    max-width: 700px;
+    margin: 22px auto;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      margin: 20px auto;
+      padding: 0 14px;
+      font-size: 0.95em;
+    }
+    #speakers > h2 {
+      font-size: 1.4em;
+    }
+  }
+  .form-box p:first-child {
+  text-align: center;
+  }
+	
+ .program-cta {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.program-cta p {
+  margin: 0 0 10px;
+}
+	
+.notice-small {
+  font-size: 0.95em;
+  opacity: 0.85;
+  margin: 30px 0 0 0;
+}
+	
+</style>
+
+</head>
+	
+<body>
+<section id="speakers" class="form">
+<h1 style="display:block; text-align:center; margin:0 auto 24px;">@ディスカバリー 配信ページ</h1>
+<div class="program-cta">
+@ディスカバリーの配信（テスト運用）を実施します。視聴はTeamsで行います。
+</p>
+
+<div class="form-box">
+  <p><strong>▼ 視聴はこちら</strong></p>
+  <p>
+	<a class="btn btn-primary btn-lg btn-center" href="https://www.microsoft.com/ja-jp/microsoft-teams/join-a-meeting" target="_blank" rel="noopener">
+      Teamsで参加する
+    </a>
+  </p>
+  <p class="notice-small">
+    ※ テスト運用のため、音声・映像が乱れる場合があります。あらかじめご了承ください。
+  </p>
+</div>
+</section>
+  <p>
+    <strong>【ご注意】</strong><br>
+	<ul class="stream-notice">
+	  <li>参加時に以下のID・パスワードを入力してください。<br><span class="note">※のちほどお知らせします</span></li>
+	  <li>円滑な進行のため、発表者以外の方はミュートでのご参加をお願いいたします。</li>
+	</ul>
+  </p>
+
+</body>
+</html>
